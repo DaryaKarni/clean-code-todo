@@ -31,7 +31,7 @@ const createNewTaskElement = function (taskString) {
   editInput.type = "text";
   editInput.className = "task";
 
-  const editButton = createButton("edit", "Edit");
+  const editButton = createButton("edit", "Edit"); //innerText encodes special characters, HTML does not.
   const deleteButton = createButton("delete", "", "./remove.svg");
 
   listItem.appendChild(checkBox);
