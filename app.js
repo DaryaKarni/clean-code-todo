@@ -54,7 +54,6 @@ const createNewTaskElement = function (taskString) {
 };
 
 const addTask = function () {
-  console.log("Add Task...");
   //Create a new list item with the text from the #new-task:
   if (!taskInput.value) return;
   const listItem = createNewTaskElement(taskInput.value);
@@ -69,11 +68,7 @@ const addTask = function () {
 //Edit an existing task.
 
 const editTask = function () {
-  console.log("Edit Task...");
-  console.log("Change 'edit' to 'save'");
-
   const listItem = this.parentNode;
-
   const editInput = listItem.querySelector("input[type=text]");
   const label = listItem.querySelector("label");
   const editBtn = listItem.querySelector(".edit");
@@ -95,8 +90,6 @@ const editTask = function () {
 
 //Delete task.
 const deleteTask = function () {
-  console.log("Delete Task...");
-
   const listItem = this.parentNode;
   const ul = listItem.parentNode;
   //Remove the parent list item from the ul.
@@ -104,17 +97,14 @@ const deleteTask = function () {
 };
 
 //Mark task completed
-var taskCompleted = function () {
-  console.log("Complete Task...");
-
+const taskCompleted = function () {
   //Append the task list item to the #completed-tasks
   const listItem = this.parentNode;
   completedTasksHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskIncomplete);
 };
 
-var taskIncomplete = function () {
-  console.log("Incomplete Task...");
+const taskIncomplete = function () {
   //Mark task as incomplete.
   //When the checkbox is unchecked
   //Append the task list item to the #incompleteTasks.
@@ -124,7 +114,7 @@ var taskIncomplete = function () {
 };
 
 const ajaxRequest = function () {
-  console.log("AJAX Request");
+
 };
 
 //The glue to hold it all together.
@@ -134,8 +124,7 @@ addButton.onclick = addTask;
 addButton.addEventListener("click", addTask);
 addButton.addEventListener("click", ajaxRequest);
 
-var bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
-  console.log("bind list item events");
+const bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
   //select ListItems children
   const checkBox = taskListItem.querySelector("input[type=checkbox]");
   const editButton = taskListItem.querySelector("button.edit");
@@ -151,13 +140,13 @@ var bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
 
 //cycle over incompleteTaskHolder ul list items
 //for each list item
-for (var i = 0; i < incompleteTaskHolder.children.length; i++) {
+for (let i = 0; i < incompleteTaskHolder.children.length; i++) {
   //bind events to list items chldren(tasksCompleted)
   bindTaskEvents(incompleteTaskHolder.children[i], taskCompleted);
 }
 
 //cycle over completedTasksHolder ul list items
-for (var i = 0; i < completedTasksHolder.children.length; i++) {
+for (let i = 0; i < completedTasksHolder.children.length; i++) {
   //bind events to list items chldren(tasksIncompleted)
   bindTaskEvents(completedTasksHolder.children[i], taskIncomplete);
 }
